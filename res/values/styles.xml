@@ -596,4 +596,14 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:textColor">@color/quantum_black_secondary_text</item>
         <item name="android:layout_width">match_parent</item>
     </style>
+    <!-- Hosts the gist backup dialogs, which follow the system dark theme -->
+    <style name="GistBackupTheme" parent="@android:style/Theme.DeviceDefault.DayNight">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+
 </resources>

@@ -21,4 +21,34 @@
 
     <string name="call_via_template">Call via <xliff:g id="account">%1$s</xliff:g></string>
 
+
+    <!-- Contacts backup to a GitHub gist -->
+    <string name="import_from_gist">Import from Gist</string>
+    <string name="export_to_gist">Export to Gist</string>
+    <string name="gist_token_hint">GitHub token</string>
+    <string name="gist_password_hint">Password (recommended)</string>
+    <string name="gist_export_message">Contacts and their photos are saved to a secret gist on your GitHub account. The token needs the gist permission. With a password, contacts are encrypted before upload.</string>
+    <string name="gist_import_message">Contacts are downloaded from the backup gist on your GitHub account. Enter the password if the backup was encrypted.</string>
+    <string name="gist_export_button">Export</string>
+    <string name="gist_import_button">Import</string>
+    <string name="gist_exporting">Exporting contacts…</string>
+    <string name="gist_importing">Downloading contacts…</string>
+    <plurals name="gist_export_done">
+        <item quantity="one">Exported %d contact to Gist</item>
+        <item quantity="other">Exported %d contacts to Gist</item>
+    </plurals>
+    <string name="gist_error_token_empty">Enter a GitHub token</string>
+    <string name="gist_error_token">GitHub didn\'t accept the token. Make sure it has the gist permission.</string>
+    <string name="gist_error_network">Couldn\'t connect to GitHub</string>
+    <string name="gist_error_not_found">No contacts backup found in your gists</string>
+    <string name="gist_error_password_needed">This backup is encrypted. Enter its password.</string>
+    <string name="gist_error_wrong_password">Wrong password</string>
+    <string name="gist_error_no_contacts">No contacts to export</string>
+    <string name="gist_error_failed">Couldn\'t complete the Gist backup</string>
+    <string name="gist_error_all_exist">All contacts from the backup are already on the phone</string>
+    <plurals name="gist_import_skipped">
+        <item quantity="one">Skipped %d contact that is already on the phone</item>
+        <item quantity="other">Skipped %d contacts that are already on the phone</item>
+    </plurals>
+
 </resources>

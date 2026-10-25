@@ -17,4 +17,35 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="menu_emergency_information_txt">Данные для экстренных ситуаций</string>
     <string name="call_via_template">Позвонить через <xliff:g id="account">%1$s</xliff:g></string>
+    <string name="import_from_gist">Импорт из Gist</string>
+    <string name="export_to_gist">Экспортировать в Gist</string>
+    <string name="gist_token_hint">Токен GitHub</string>
+    <string name="gist_password_hint">Пароль (рекомендуется)</string>
+    <string name="gist_export_message">Контакты и их фото сохраняются в секретный gist вашего аккаунта GitHub. Токену нужно право gist. С паролем контакты шифруются перед отправкой.</string>
+    <string name="gist_import_message">Контакты загружаются из gist с копией в вашем аккаунте GitHub. Если копия зашифрована, введите пароль.</string>
+    <string name="gist_export_button">Экспортировать</string>
+    <string name="gist_import_button">Импортировать</string>
+    <string name="gist_exporting">Экспорт контактов…</string>
+    <string name="gist_importing">Загрузка контактов…</string>
+    <plurals name="gist_export_done">
+        <item quantity="one">В Gist экспортирован %d контакт</item>
+        <item quantity="few">В Gist экспортировано %d контакта</item>
+        <item quantity="many">В Gist экспортировано %d контактов</item>
+        <item quantity="other">В Gist экспортировано %d контакта</item>
+    </plurals>
+    <string name="gist_error_token_empty">Введите токен GitHub</string>
+    <string name="gist_error_token">GitHub не принял токен. Проверьте, что у него есть право gist.</string>
+    <string name="gist_error_network">Не удалось подключиться к GitHub</string>
+    <string name="gist_error_not_found">В ваших gist нет копии контактов</string>
+    <string name="gist_error_password_needed">Копия зашифрована. Введите пароль.</string>
+    <string name="gist_error_wrong_password">Неверный пароль</string>
+    <string name="gist_error_no_contacts">Нет контактов для экспорта</string>
+    <string name="gist_error_failed">Не удалось выполнить копирование в Gist</string>
+    <string name="gist_error_all_exist">Все контакты из копии уже есть на телефоне</string>
+    <plurals name="gist_import_skipped">
+        <item quantity="one">Пропущен %d контакт, он уже есть на телефоне</item>
+        <item quantity="few">Пропущено %d контакта, они уже есть на телефоне</item>
+        <item quantity="many">Пропущено %d контактов, они уже есть на телефоне</item>
+        <item quantity="other">Пропущено %d контакта, они уже есть на телефоне</item>
+    </plurals>
 </resources>

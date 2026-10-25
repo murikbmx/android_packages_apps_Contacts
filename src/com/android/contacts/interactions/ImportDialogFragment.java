@@ -50,6 +50,7 @@ import com.android.contacts.model.SimContact;
 import com.android.contacts.model.account.AccountInfo;
 import com.android.contacts.model.account.AccountWithDataSet;
 import com.android.contacts.util.AccountSelectionUtil;
+import com.android.contacts.vcard.GistBackupActivity;
 import com.google.common.util.concurrent.Futures;
 
 import java.util.HashMap;
@@ -188,6 +189,9 @@ public class ImportDialogFragment extends DialogFragment {
                     handleSimImportRequest(adapter.getItem(which).mSim);
                 } else if (resId == R.string.import_from_vcf_file) {
                     handleImportRequest(resId, SimCard.NO_SUBSCRIPTION_ID);
+                } else if (resId == R.string.import_from_gist) {
+                    startActivity(new Intent(getActivity(), GistBackupActivity.class)
+                            .putExtra(GistBackupActivity.EXTRA_IMPORT, true));
                 } else {
                     Log.e(TAG, "Unexpected resource: "
                             + getActivity().getResources().getResourceEntryName(resId));
@@ -226,6 +230,8 @@ public class ImportDialogFragment extends DialogFragment {
             adapter.add(new AdapterEntry(getString(R.string.import_from_vcf_file),
                     R.string.import_from_vcf_file));
         }
+        adapter.add(new AdapterEntry(getString(R.string.import_from_gist),
+                R.string.import_from_gist));
         if (!isSimImportAllowedForCurrentUser()) {
             return;
         }

@@ -41,6 +41,7 @@ import android.widget.Toast;
 import com.android.contacts.R;
 import com.android.contacts.util.ImplicitIntentsUtil;
 import com.android.contacts.vcard.ExportVCardActivity;
+import com.android.contacts.vcard.GistBackupActivity;
 import com.android.contacts.vcard.ShareVCardActivity;
 import com.android.contacts.vcard.VCardCommonArguments;
 
@@ -113,6 +114,8 @@ public class ExportDialogFragment extends DialogFragment {
                 adapter.add(new AdapterEntry(getString(R.string.export_to_vcf_file),
                         R.string.export_to_vcf_file));
         }
+        adapter.add(new AdapterEntry(getString(R.string.export_to_gist),
+                R.string.export_to_gist));
         if (res.getBoolean(R.bool.config_allow_share_contacts)) {
             if (mExportMode == EXPORT_MODE_FAVORITES) {
                 // share favorite and frequently contacted contacts from Favorites tab
@@ -139,6 +142,10 @@ public class ExportDialogFragment extends DialogFragment {
                     exportIntent.putExtra(VCardCommonArguments.ARG_CALLING_ACTIVITY,
                             callingActivity);
                     getActivity().startActivity(exportIntent);
+                } else if (resId == R.string.export_to_gist) {
+                    dismissDialog = true;
+                    getActivity().startActivity(
+                            new Intent(getActivity(), GistBackupActivity.class));
                 } else if (resId == R.string.share_contacts) {
                     dismissDialog = true;
                     if (mExportMode == EXPORT_MODE_FAVORITES) {

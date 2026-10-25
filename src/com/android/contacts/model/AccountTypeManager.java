@@ -641,6 +641,11 @@ class AccountTypeManagerImpl extends AccountTypeManager
                         }
 
                         for (AccountWithDataSet account : input.get(1)) {
+                            // The DEVICE account added to the AccountManager accounts is also
+                            // the local account once it has contacts, don't list it twice
+                            if (input.get(0).contains(account)) {
+                                continue;
+                            }
                             result.add(
                                     typeProvider
                                             .getTypeForAccount(account)

@@ -18,6 +18,8 @@ package com.android.contacts.vcard;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
@@ -47,6 +49,8 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -65,6 +69,11 @@ public class GistBackupActivity extends Activity {
     private static final String PREF_GIST_ID = "gist_id";
 
     private static final String IMPORT_FILE = "gist_contacts.vcf";
+
+    // The photo column only has the 96px thumbnail, so the full photo is read from its file.
+    // 720px is what the contacts provider keeps as the display photo.
+    private static final VCardComposer.PhotoOptions PHOTO_OPTIONS =
+            new VCardComposer.PhotoOptions(720, 200 * 1024);
     private static final int REQUEST_IMPORT = 1;
 
     private final ExecutorService mExecutor = Executors.newSingleThreadExecutor();
@@ -219,7 +228,7 @@ public class GistBackupActivity extends Activity {
     private int exportContacts(String token, String password) throws Exception {
         final int vcardType = VCardConfig.getVCardTypeFromString(
                 getString(R.string.config_export_vcard_type));
-        final VCardComposer composer = new VCardComposer(this, vcardType, true);
+        final VCardComposer composer = new HighResPhotoComposer(this, vcardType);
         final StringBuilder vcards = new StringBuilder();
         final int count;
         try {
@@ -291,6 +300,17 @@ public class GistBackupActivity extends Activity {
         }
         return FileProvider.getUriForFile(this,
                 getString(R.string.contacts_file_provider_authority), file);
+    }
+
+    private static class HighResPhotoComposer extends VCardComposer {
+        HighResPhotoComposer(Context context, int vcardType) {
+            super(context, vcardType, true);
+        }
+
+        @Override
+        public String buildVCard(Map<String, List<ContentValues>> contentValuesListMap) {
+            return buildVCard(contentValuesListMap, PHOTO_OPTIONS);
+        }
     }
 
     private SharedPreferences getPrefs() {

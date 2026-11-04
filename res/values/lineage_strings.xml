@@ -51,4 +51,25 @@
         <item quantity="other">Skipped %d contacts that are already on the phone</item>
     </plurals>
 
+    <!-- Duplicate contacts -->
+    <string name="duplicates_title">Remove duplicates</string>
+    <string name="duplicates_searching">Looking for duplicates…</string>
+    <string name="duplicates_removing">Removing duplicates…</string>
+    <string name="duplicates_none">No duplicates found</string>
+    <string name="duplicates_failed">Couldn\'t remove the duplicates</string>
+    <string name="duplicates_delete_button">Remove</string>
+    <!-- %1$s is the contact, %2$d the number of its copies to remove -->
+    <string name="duplicates_item">%1$s, copies to remove: %2$d</string>
+    <plurals name="duplicates_confirm">
+        <item quantity="one">Remove %d copy? This can\'t be undone.</item>
+        <item quantity="other">Remove %d copies? This can\'t be undone.</item>
+    </plurals>
+    <plurals name="duplicates_removed">
+        <item quantity="one">Removed %d copy</item>
+        <item quantity="other">Removed %d copies</item>
+    </plurals>
+    <plurals name="import_duplicates_skipped">
+        <item quantity="one">Skipped %d duplicate contact</item>
+        <item quantity="other">Skipped %d duplicate contacts</item>
+    </plurals>
 </resources>

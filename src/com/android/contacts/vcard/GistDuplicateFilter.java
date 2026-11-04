@@ -24,6 +24,7 @@ import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.util.Log;
 
+import com.android.contacts.duplicates.DuplicateFinder;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntryConstructor;
 import com.android.vcard.VCardEntryHandler;
@@ -38,7 +39,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -57,9 +57,6 @@ final class GistDuplicateFilter {
             Pattern.CASE_INSENSITIVE | Pattern.MULTILINE | Pattern.DOTALL);
     private static final Pattern VERSION = Pattern.compile(
             "^VERSION:\\s*(\\S+)", Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
-
-    // Numbers are compared by their last digits, so +7 701... and 8 701... match
-    private static final int PHONE_DIGITS = 10;
 
     /** The vCards to import and how many were skipped. */
     static class Result {
@@ -190,22 +187,20 @@ final class GistDuplicateFilter {
     }
 
     private static String normalizeName(String name) {
-        return name == null ? "" : name.trim().replaceAll("\\s+", " ").toLowerCase(Locale.ROOT);
+        return DuplicateFinder.normalizeName(name);
     }
 
     private static void addPhone(Set<String> keys, String number) {
-        if (number == null) {
-            return;
-        }
-        final String digits = number.replaceAll("[^0-9]", "");
-        if (!digits.isEmpty()) {
-            keys.add("p:" + digits.substring(Math.max(0, digits.length() - PHONE_DIGITS)));
+        final String key = DuplicateFinder.phoneKey(number);
+        if (key != null) {
+            keys.add(key);
         }
     }
 
     private static void addEmail(Set<String> keys, String address) {
-        if (address != null && !address.trim().isEmpty()) {
-            keys.add("e:" + address.trim().toLowerCase(Locale.ROOT));
+        final String key = DuplicateFinder.emailKey(address);
+        if (key != null) {
+            keys.add(key);
         }
     }
 }

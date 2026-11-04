@@ -48,4 +48,31 @@
         <item quantity="many">Пропущено %d контактов, они уже есть на телефоне</item>
         <item quantity="other">Пропущено %d контакта, они уже есть на телефоне</item>
     </plurals>
+
+    <!-- Duplicate contacts -->
+    <string name="duplicates_title">Удалить дубликаты</string>
+    <string name="duplicates_searching">Поиск дубликатов…</string>
+    <string name="duplicates_removing">Удаление дубликатов…</string>
+    <string name="duplicates_none">Дубликаты не найдены</string>
+    <string name="duplicates_failed">Не удалось удалить дубликаты</string>
+    <string name="duplicates_delete_button">Удалить</string>
+    <string name="duplicates_item">%1$s, копий к удалению: %2$d</string>
+    <plurals name="duplicates_confirm">
+        <item quantity="one">Удалить %d копию? Это нельзя отменить.</item>
+        <item quantity="few">Удалить %d копии? Это нельзя отменить.</item>
+        <item quantity="many">Удалить %d копий? Это нельзя отменить.</item>
+        <item quantity="other">Удалить %d копии? Это нельзя отменить.</item>
+    </plurals>
+    <plurals name="duplicates_removed">
+        <item quantity="one">Удалена %d копия</item>
+        <item quantity="few">Удалено %d копии</item>
+        <item quantity="many">Удалено %d копий</item>
+        <item quantity="other">Удалено %d копии</item>
+    </plurals>
+    <plurals name="import_duplicates_skipped">
+        <item quantity="one">Пропущен %d дубликат</item>
+        <item quantity="few">Пропущено %d дубликата</item>
+        <item quantity="many">Пропущено %d дубликатов</item>
+        <item quantity="other">Пропущено %d дубликата</item>
+    </plurals>
 </resources>

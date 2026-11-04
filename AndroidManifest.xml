@@ -531,6 +531,11 @@
             android:theme="@style/GistBackupTheme"/>
 
         <activity
+            android:name=".duplicates.DuplicateCleanupActivity"
+            android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+            android:theme="@style/GistBackupTheme"/>
+
+        <activity
             android:name=".activities.SimImportActivity"
             android:label="@string/sim_import_title"
             android:theme="@style/PeopleThemeAppCompat.FullScreenDialog.SimImportActivity"/>

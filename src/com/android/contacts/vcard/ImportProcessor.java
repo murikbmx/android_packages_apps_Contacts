@@ -19,8 +19,12 @@ import android.accounts.Account;
 import android.app.Notification;
 import android.content.ContentResolver;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.android.contacts.R;
 import com.android.contactsbind.FeedbackHelper;
 import com.android.vcard.VCardEntry;
 import com.android.vcard.VCardEntryCommitter;
@@ -39,7 +43,9 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Class for processing one import request from a user. Dropped after importing requested Uri(s).
@@ -152,10 +158,15 @@ public class ImportProcessor extends ProcessorBase implements VCardEntryHandler 
         final int entryCount = request.entryCount;
         mTotalCount += entryCount;
 
+        final Set<Integer> duplicates = findDuplicates(request, possibleVCardVersions);
+        if (isCancelled()) {
+            return;
+        }
+
         final VCardEntryConstructor constructor =
                 new VCardEntryConstructor(estimatedVCardType, account, estimatedCharset);
         final VCardEntryCommitter committer = new VCardEntryCommitter(mResolver);
-        constructor.addEntryHandler(committer);
+        constructor.addEntryHandler(new DuplicateSkippingHandler(committer, duplicates));
         constructor.addEntryHandler(this);
 
         InputStream is = null;
@@ -195,6 +206,7 @@ public class ImportProcessor extends ProcessorBase implements VCardEntryHandler 
                 // Cancel notification will be done outside this method.
             } else {
                 Log.i(LOG_TAG, "Successfully finished importing one vCard file: " + uri);
+                showSkippedDuplicates(duplicates.size());
                 List<Uri> uris = committer.getCreatedUris();
                 if (mListener != null) {
                     if (uris != null && uris.size() == 1) {
@@ -212,6 +224,81 @@ public class ImportProcessor extends ProcessorBase implements VCardEntryHandler 
         } else {
             Log.w(LOG_TAG, "Failed to read one vCard file: " + uri);
             mFailedUris.add(uri);
+        }
+    }
+
+    /**
+     * Returns the positions of the entries not to import. If they can't be determined everything
+     * gets imported, since an extra copy can be removed later but a lost contact can't be restored.
+     */
+    private Set<Integer> findDuplicates(ImportRequest request, int[] possibleVCardVersions) {
+        final VCardDuplicateScanner scanner = new VCardDuplicateScanner();
+        final VCardEntryConstructor constructor = new VCardEntryConstructor(
+                request.estimatedVCardType, request.account, request.estimatedCharset);
+        constructor.addEntryHandler(scanner);
+
+        InputStream is = null;
+        try {
+            if (request.uri != null) {
+                is = mResolver.openInputStream(request.uri);
+            } else if (request.data != null) {
+                is = new ByteArrayInputStream(request.data);
+            }
+            if (is != null && readOneVCard(is, request.estimatedVCardType,
+                    request.estimatedCharset, constructor, possibleVCardVersions)
+                    && !isCancelled()) {
+                return scanner.findDuplicates(mService);
+            }
+        } catch (IOException | RuntimeException e) {
+            Log.w(LOG_TAG, "Can't look for duplicates in a vCard", e);
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    // ignore
+                }
+            }
+        }
+        return Collections.emptySet();
+    }
+
+    private void showSkippedDuplicates(int count) {
+        if (count > 0) {
+            new Handler(Looper.getMainLooper()).post(() -> Toast.makeText(mService,
+                    mService.getResources().getQuantityString(
+                            R.plurals.import_duplicates_skipped, count, count),
+                    Toast.LENGTH_LONG).show());
+        }
+    }
+
+    /** Passes on the entries to import. */
+    private static class DuplicateSkippingHandler implements VCardEntryHandler {
+        private final VCardEntryHandler mHandler;
+        private final Set<Integer> mDuplicates;
+        private int mPosition;
+
+        DuplicateSkippingHandler(VCardEntryHandler handler, Set<Integer> duplicates) {
+            mHandler = handler;
+            mDuplicates = duplicates;
+        }
+
+        @Override
+        public void onStart() {
+            mPosition = 0;
+            mHandler.onStart();
+        }
+
+        @Override
+        public void onEntryCreated(VCardEntry entry) {
+            if (!mDuplicates.contains(mPosition++)) {
+                mHandler.onEntryCreated(entry);
+            }
+        }
+
+        @Override
+        public void onEnd() {
+            mHandler.onEnd();
         }
     }
 

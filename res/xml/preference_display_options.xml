@@ -66,6 +66,11 @@
 
     <Preference
         android:icon="@null"
+        android:key="removeDuplicates"
+        android:title="@string/duplicates_title"/>
+
+    <Preference
+        android:icon="@null"
         android:key="blockedNumbers"
         android:title="@string/menu_blocked_numbers" />
 

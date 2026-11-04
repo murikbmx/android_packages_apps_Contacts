@@ -54,6 +54,7 @@ import com.android.contacts.R;
 import com.android.contacts.SimImportService;
 import com.android.contacts.compat.TelecomManagerUtil;
 import com.android.contacts.compat.TelephonyManagerCompat;
+import com.android.contacts.duplicates.DuplicateCleanupActivity;
 import com.android.contacts.interactions.ExportDialogFragment;
 import com.android.contacts.interactions.ImportDialogFragment;
 import com.android.contacts.list.ContactListFilter;
@@ -93,6 +94,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
     private static final String KEY_CUSTOM_CONTACTS_FILTER = "customContactsFilter";
     private static final String KEY_IMPORT = "import";
     private static final String KEY_EXPORT = "export";
+    private static final String KEY_REMOVE_DUPLICATES = "removeDuplicates";
     private static final String KEY_MY_INFO = "myInfo";
     private static final String KEY_SORT_ORDER = "sortOrder";
     private static final String KEY_PHONETIC_NAME_DISPLAY = "phoneticNameDisplay";
@@ -241,6 +243,8 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
             exportPreference.setOnPreferenceClickListener(this);
         }
 
+        findPreference(KEY_REMOVE_DUPLICATES).setOnPreferenceClickListener(this);
+
         final Preference blockedNumbersPreference = findPreference(KEY_BLOCKED_NUMBERS);
         if (blockedNumbersPreference != null) {
             blockedNumbersPreference.setOnPreferenceClickListener(this);
@@ -327,6 +331,7 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
 
         if (!mAreContactsAvailable) {
             getPreferenceScreen().removePreference(findPreference(KEY_EXPORT));
+            getPreferenceScreen().removePreference(findPreference(KEY_REMOVE_DUPLICATES));
         }
     }
 
@@ -380,6 +385,9 @@ public class DisplayOptionsPreferenceFragment extends PreferenceFragment
                     getFragmentManager(),
                     ContactsPreferenceActivity.class,
                     ExportDialogFragment.EXPORT_MODE_ALL_CONTACTS);
+            return true;
+        } else if (KEY_REMOVE_DUPLICATES.equals(prefKey)) {
+            startActivity(new Intent(getContext(), DuplicateCleanupActivity.class));
             return true;
         } else if (KEY_MY_INFO.equals(prefKey)) {
             if (mHasProfile) {

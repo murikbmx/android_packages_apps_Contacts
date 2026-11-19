@@ -282,10 +282,28 @@ public class MoreContactUtils {
                         handler.applyTopInset(insets.top);
                     }
 
+                    // Paint the strip behind the navigation bar; the window background may be
+                    // transparent (QuickContact) and would otherwise show black there.
+                    v.setBackground(navigationBarStrip(activity, insets.bottom));
+
                     // Return CONSUMED if you don't want the window insets to keep being
                     // passed down to descendant views.
                     return WindowInsetsCompat.CONSUMED;
                 });
+    }
+
+    private static android.graphics.drawable.Drawable navigationBarStrip(
+            Activity activity, int height) {
+        if (height <= 0) return null;
+        final android.graphics.drawable.ColorDrawable color =
+                new android.graphics.drawable.ColorDrawable(
+                        activity.getColor(R.color.navigation_bar_bg));
+        final android.graphics.drawable.LayerDrawable strip =
+                new android.graphics.drawable.LayerDrawable(
+                        new android.graphics.drawable.Drawable[] {color});
+        strip.setLayerGravity(0, android.view.Gravity.BOTTOM);
+        strip.setLayerHeight(0, height);
+        return strip;
     }
 
     /** Handles setting the insets on a {@link View}. */

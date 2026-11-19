@@ -420,7 +420,10 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         if (Log.isLoggable(Constants.PERFORMANCE_TAG, Log.DEBUG)) {
             Log.d(Constants.PERFORMANCE_TAG, "PeopleActivity.onCreate finish");
         }
-        getWindow().setBackgroundDrawable(null);
+        // Keep a surface-colored window background: with edge-to-edge the area behind the
+        // navigation bar is not covered by any view.
+        getWindow().setBackgroundDrawable(
+                new android.graphics.drawable.ColorDrawable(getColor(R.color.background_primary)));
     }
 
     @SuppressWarnings("MissingSuperCall") // TODO: Fix me

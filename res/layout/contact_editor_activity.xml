@@ -27,8 +27,8 @@
         style="@style/EditorActionBarStyle"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="?android:attr/colorPrimary"
-        android:elevation="4dp"
+        android:background="@color/actionbar_background_color"
+        android:elevation="0dp"
         app:navigationContentDescription="@string/cancel_button_content_description"
         app:navigationIcon="@drawable/quantum_ic_close_vd_theme_24"
         app:title="@string/contact_editor_title_existing_contact" />

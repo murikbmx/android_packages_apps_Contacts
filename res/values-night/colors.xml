@@ -4,15 +4,20 @@
  * Copyright (C) 2020 The LineageOS Project
 -->
 <resources>
-    <!-- Background color of pinned header items. -->
-    <color name="list_item_pinned_header_color">@*android:color/system_neutral1_900</color>
+    <!-- Most colors follow the Material 3 roles in values(-night)/m3_colors.xml.
+         Only the hard-coded translucent black values need a dark counterpart. -->
 
-    <!-- Color of contact name in list. -->
-    <color name="contact_list_name_text_color">#dadada</color>
+    <!-- Color of disabled text and unfocused hint text inside the contact editor. -->
+    <color name="editor_disabled_text_color">#61ffffff</color>
 
-    <!-- Color of the background of the contact detail and editor pages -->
-    <color name="background_primary">@*android:color/system_neutral1_900</color>
-    <color name="contact_all_list_background_color">@*android:color/system_neutral1_900</color>
+    <!-- Color of text on disabled link contacts button. -->
+    <color name="disabled_button_text">#61ffffff</color>
 
-    <color name="fab_color">@android:color/system_accent1_100</color>
+    <!-- Color of background of disabled link contacts button. -->
+    <color name="disabled_button_background">#26ffffff</color>
+
+    <!-- Color of text of people names in contact list when item is disabled. -->
+    <color name="disabled_contact_list_name_text">#61ffffff</color>
+
+    <color name="control_highlight_color">#1Affffff</color>
 </resources>

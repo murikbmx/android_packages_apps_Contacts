@@ -30,7 +30,7 @@
         android:src="@drawable/quantum_ic_arrow_back_vd_theme_24"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/action_menu_back_from_search"
-        android:tint="@color/actionbar_background_color" />
+        android:tint="@color/m3_on_surface_variant" />
 
     <android.widget.AutoCompleteTextView
         android:id="@+id/search_view"
@@ -54,7 +54,7 @@
         android:layout_width="@dimen/search_box_close_icon_size"
         android:padding="@dimen/search_box_close_icon_padding"
         android:src="@drawable/quantum_ic_close_vd_theme_24"
-        android:tint="@color/quantum_black_secondary_text"
+        android:tint="@color/m3_on_surface_variant"
         android:clickable="true"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/description_clear_search" />

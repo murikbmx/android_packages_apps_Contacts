@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Dark counterparts of the framework dialog themes declared in values/styles.xml.
+         The framework has no public DayNight dialog theme. -->
+    <style name="ContactsAlertDialogTheme" parent="@android:style/Theme.DeviceDefault.Dialog">
+        <item name="android:colorAccent">@color/primary_color</item>
+        <item name="android:windowBackground">@drawable/dialog_background</item>
+    </style>
+
+    <style name="NonPhoneDialogTheme" parent="@android:style/Theme.DeviceDefault.Dialog">
+    </style>
+</resources>

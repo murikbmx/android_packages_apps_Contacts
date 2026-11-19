@@ -398,7 +398,8 @@ public class DrawerAdapter extends BaseAdapter {
         textView.setTextAppearance(mActivity, activated
                 ? TYPEFACE_STYLE_ACTIVATE : TYPEFACE_STYLE_INACTIVE);
         if (activated) {
-            imageView.setColorFilter(mActivity.getResources().getColor(R.color.primary_color),
+            imageView.setColorFilter(
+                    mActivity.getResources().getColor(R.color.m3_on_secondary_container),
                     PorterDuff.Mode.SRC_ATOP);
         } else {
             imageView.clearColorFilter();

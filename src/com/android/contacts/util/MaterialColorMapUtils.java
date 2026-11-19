@@ -200,6 +200,6 @@ public class MaterialColorMapUtils {
                 && ((PeopleActivity) activity).isGroupView();
         return isGroupView
                 ? ContextCompat.getColor(activity, R.color.group_primary_color)
-                : ContextCompat.getColor(activity, R.color.primary_color);
+                : ContextCompat.getColor(activity, R.color.actionbar_background_color);
     }
 }

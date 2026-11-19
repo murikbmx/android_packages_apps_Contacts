@@ -375,7 +375,7 @@ public class CallSubjectDialog extends Activity {
                     R.color.call_subject_limit_exceeded));
         } else {
             mCharacterLimitView.setTextColor(getResources().getColor(
-                    R.color.dialtacts_secondary_text_color));
+                    R.color.call_subject_secondary_text_color));
         }
     }
 

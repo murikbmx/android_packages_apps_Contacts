@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Material 3 color roles backed by the system dynamic (Material You) palette.
+     The values-night variant points at the dark scheme. -->
+<resources>
+    <color name="m3_primary">@android:color/system_primary_dark</color>
+    <color name="m3_on_primary">@android:color/system_on_primary_dark</color>
+    <color name="m3_primary_container">@android:color/system_primary_container_dark</color>
+    <color name="m3_on_primary_container">@android:color/system_on_primary_container_dark</color>
+    <color name="m3_secondary">@android:color/system_secondary_dark</color>
+    <color name="m3_on_secondary">@android:color/system_on_secondary_dark</color>
+    <color name="m3_secondary_container">@android:color/system_secondary_container_dark</color>
+    <color name="m3_on_secondary_container">@android:color/system_on_secondary_container_dark</color>
+    <color name="m3_tertiary_container">@android:color/system_tertiary_container_dark</color>
+    <color name="m3_on_tertiary_container">@android:color/system_on_tertiary_container_dark</color>
+    <color name="m3_surface">@android:color/system_surface_dark</color>
+    <color name="m3_on_surface">@android:color/system_on_surface_dark</color>
+    <color name="m3_surface_variant">@android:color/system_surface_variant_dark</color>
+    <color name="m3_on_surface_variant">@android:color/system_on_surface_variant_dark</color>
+    <color name="m3_surface_container_lowest">@android:color/system_surface_container_lowest_dark</color>
+    <color name="m3_surface_container_low">@android:color/system_surface_container_low_dark</color>
+    <color name="m3_surface_container">@android:color/system_surface_container_dark</color>
+    <color name="m3_surface_container_high">@android:color/system_surface_container_high_dark</color>
+    <color name="m3_surface_container_highest">@android:color/system_surface_container_highest_dark</color>
+    <color name="m3_outline">@android:color/system_outline_dark</color>
+    <color name="m3_outline_variant">@android:color/system_outline_variant_dark</color>
+    <color name="m3_inverse_surface">@android:color/system_inverse_surface_dark</color>
+    <color name="m3_inverse_on_surface">@android:color/system_inverse_on_surface_dark</color>
+    <color name="m3_error">@android:color/system_error_dark</color>
+
+    <!-- Whether status/navigation bar icons should be dark (light theme). -->
+    <bool name="m3_light_system_bars">false</bool>
+</resources>

@@ -370,9 +370,12 @@
     <!-- The width of the drawer -->
     <dimen name="drawer_width">320dp</dimen>
     <!-- Minimum height of items in navigation drawer -->
-    <dimen name="drawer_item_fixed_height">48dp</dimen>
+    <dimen name="drawer_item_fixed_height">56dp</dimen>
+    <!-- Material 3 drawer item pill -->
+    <dimen name="drawer_item_pill_inset">12dp</dimen>
+    <dimen name="drawer_item_pill_radius">28dp</dimen>
     <!-- Side padding within the navigation drawer -->
-    <dimen name="drawer_side_padding">16dp</dimen>
+    <dimen name="drawer_side_padding">24dp</dimen>
     <!-- Size of the icon in navigation drawer -->
     <dimen name="drawer_item_icon_size">32dp</dimen>
     <!-- The side margin of the item text in navigation drawer -->

@@ -37,9 +37,17 @@
         <item name="android:actionBarItemBackground">
             @drawable/item_background_material_borderless_dark
         </item>
+        <!-- The header shows a photo or a saturated color: keep white icons on it -->
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:actionOverflowButtonStyle">@style/QuickContactOverflowButton</item>
     </style>
 
-    <style name="PeopleTheme" parent="@android:style/Theme.Material.Light.DarkActionBar">
+    <style name="QuickContactOverflowButton" parent="@style/ContactsActionBarOverflowQP">
+        <item name="android:tint">@color/quickcontact_toolbar_icon_color</item>
+    </style>
+
+    <style name="PeopleTheme" parent="@android:style/Theme.DeviceDefault.DayNight">
+        <item name="android:forceDarkAllowed">false</item>
         <item name="android:actionBarStyle">@style/ContactsActionBarStyle</item>
         <!-- Style for the overflow button in the actionbar. -->
         <item name="android:actionOverflowButtonStyle">@style/ContactsActionBarOverflowQP</item>
@@ -52,7 +60,11 @@
         <item name="android:colorPrimaryDark">@color/primary_color_dark</item>
         <item name="android:colorPrimary">@color/primary_color</item>
         <item name="android:colorAccent">@color/primary_color</item>
-        <item name="android:alertDialogTheme">@style/ContactsAlertDialogTheme</item>
+        <item name="android:colorBackground">@color/background_primary</item>
+        <item name="android:statusBarColor">@color/m3_surface</item>
+        <item name="android:navigationBarColor">@color/navigation_bar_bg</item>
+        <item name="android:windowLightStatusBar">@bool/m3_light_system_bars</item>
+        <item name="android:windowLightNavigationBar">@bool/m3_light_system_bars</item>
         <item name="list_item_height">@dimen/contact_browser_list_item_height</item>
         <item name="list_section_header_height">24dip</item>
         <item name="list_item_padding_top">
@@ -93,16 +105,19 @@
         <item name="android:windowBackground">@drawable/quantum_launchscreen_contacts</item>
         <item name="colorPrimaryDark">@color/primary_color_dark</item>
         <item name="colorPrimary">@color/primary_color</item>
+        <item name="android:statusBarColor">@color/m3_surface</item>
+        <item name="android:windowLightStatusBar">@bool/m3_light_system_bars</item>
+        <item name="android:windowLightNavigationBar">@bool/m3_light_system_bars</item>
     </style>
 
     <style name="PeopleActivityTheme" parent="@style/PeopleThemeAppCompat">
-        <item name="android:forceDarkAllowed">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:listSelector">?android:attr/listChoiceBackgroundIndicator</item>
     </style>
 
-    <style name="PeopleThemeAppCompat" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="PeopleThemeAppCompat" parent="Theme.AppCompat.DayNight">
+        <item name="android:forceDarkAllowed">false</item>
         <!-- Styles that require AppCompat compatibility, remember to update both sets -->
         <item name="android:actionBarStyle">@style/ContactsActionBarStyleAppCompat</item>
         <item name="actionBarStyle">@style/ContactsActionBarStyleAppCompat</item>
@@ -124,6 +139,13 @@
         <item name="colorPrimary">@color/primary_color</item>
         <item name="android:colorAccent">@color/primary_color</item>
         <item name="colorAccent">@color/primary_color</item>
+        <item name="colorControlNormal">@color/m3_on_surface_variant</item>
+        <item name="colorControlHighlight">@color/control_highlight_color</item>
+        <item name="android:colorBackground">@color/background_primary</item>
+        <item name="android:statusBarColor">@color/m3_surface</item>
+        <item name="android:navigationBarColor">@color/navigation_bar_bg</item>
+        <item name="android:windowLightStatusBar">@bool/m3_light_system_bars</item>
+        <item name="android:windowLightNavigationBar">@bool/m3_light_system_bars</item>
         <item name="android:alertDialogTheme">@style/ContactsAlertDialogThemeAppCompat</item>
         <item name="alertDialogTheme">@style/ContactsAlertDialogThemeAppCompat</item>
         <item name="list_item_height">@dimen/contact_browser_list_item_height</item>
@@ -168,11 +190,11 @@
     </style>
 
     <style name="PopupMenuStyle" parent="@android:style/Widget.PopupMenu">
-        <item name="android:popupBackground">@android:color/white</item>
+        <item name="android:popupBackground">@drawable/m3_popup_background</item>
     </style>
 
     <style name="PopupMenuStyleAppCompat" parent="Widget.AppCompat.PopupMenu">
-        <item name="android:popupBackground">@android:color/white</item>
+        <item name="android:popupBackground">@drawable/m3_popup_background</item>
     </style>
 
     <style name="ContactsActionButtonStyle" parent="Widget.AppCompat.ActionButton">
@@ -182,8 +204,8 @@
 
     <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
         <item name="spinBars">false</item>
-        <item name="color">@android:color/white</item>
-        <item name="android:color">@android:color/white</item>
+        <item name="color">@color/m3_on_surface_variant</item>
+        <item name="android:color">@color/m3_on_surface_variant</item>
     </style>
 
     <!-- Use the non-light style so that the up button & icons aren't black. If we use the
@@ -242,12 +264,14 @@
     <!-- Text in the action bar at the top of the screen -->
     <style name="ContactsActionBarTitleText"
         parent="@android:style/TextAppearance.Material.Widget.ActionBar.Title">
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/actionbar_text_color</item>
     </style>
 
     <style name="ContactsActionBarTitleTextAppCompat" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">20dp</item>
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/actionbar_text_color</item>
     </style>
 
@@ -282,7 +306,7 @@
     <style name="NonPhoneActivityTheme" parent="@android:Theme.Translucent.NoTitleBar">
     </style>
 
-    <style name="NonPhoneDialogTheme" parent="@android:Theme.Material.Light.Dialog">
+    <style name="NonPhoneDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
     </style>
 
     <style name="ConfirmAddDetailDialogTheme" parent="@android:style/Theme.Material.Light.Dialog.MinWidth">
@@ -296,6 +320,8 @@
     <style name="ExpandingEntryCardStyle">
         <item name="android:elevation">@dimen/expanding_entry_card_elevation</item>
         <item name="android:background">@color/expanding_entry_card_background_color</item>
+        <item name="cardBackgroundColor">@color/expanding_entry_card_background_color</item>
+        <item name="cardElevation">0dp</item>
         <item name="android:layout_marginBottom">@dimen/expanding_entry_card_marginBottom</item>
         <item name="android:layout_marginEnd">@dimen/expanding_entry_card_marginStartEnd</item>
         <item name="android:layout_marginStart">@dimen/expanding_entry_card_marginStartEnd</item>
@@ -321,21 +347,24 @@
     <style name="EditKindTextAppearanceStyle" parent="@android:style/TextAppearance.Small">
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textColor">#363636</item>
-        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/m3_primary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <!-- Inherit from Theme.Material.Light.Dialog instead of Theme.Material.Light.Dialog.Alert
         since the Alert dialog is private. They are identical anyway. -->
-    <style name="ContactsAlertDialogTheme" parent="@android:style/Theme.Material.Light.Dialog">
+    <style name="ContactsAlertDialogTheme" parent="@android:style/Theme.DeviceDefault.Light.Dialog">
         <item name="android:colorAccent">@color/primary_color</item>
         <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
 
-    <style name="ContactsAlertDialogThemeAppCompat" parent="Theme.AppCompat.Light.Dialog.MinWidth">
+    <style name="ContactsAlertDialogThemeAppCompat" parent="Theme.AppCompat.DayNight.Dialog.MinWidth">
         <item name="android:colorAccent">@color/primary_color</item>
         <item name="colorAccent">@color/primary_color</item>
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="android:textColorPrimary">@color/m3_on_surface</item>
+        <item name="android:textColorSecondary">@color/m3_on_surface_variant</item>
         <item name="android:windowBackground">@drawable/dialog_background</item>
     </style>
 
@@ -369,7 +398,7 @@
 
     <style name="AccountTypeNameStyle">
         <item name="android:textSize">10sp</item>
-        <item name="android:textColor">#363636</item>
+        <item name="android:textColor">@color/m3_on_surface_variant</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
@@ -380,8 +409,7 @@
     <!-- Text style for empty states (no account view, empty label). -->
     <style name="EmptyStateTextStyle">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">#000000</item>
-        <item name="android:alpha">0.54</item>
+        <item name="android:textColor">@color/m3_on_surface_variant</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
@@ -390,7 +418,7 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/primary_color</item>
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <!-- Add contacts button style for empty states. -->
@@ -398,14 +426,14 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/primary_color</item>
         <item name="android:fontFamily">sans-serif-medium</item>
-        <item name="android:textAllCaps">true</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="SectionHeaderStyle" parent="@android:style/TextAppearance.Large">
         <item name="android:textSize">16sp</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/section_header_text_color</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="DirectoryHeaderStyle" parent="@android:style/TextAppearance.Small">
@@ -437,15 +465,15 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
 
     <style name="TextAppearanceMedium" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">#000000</item>
+        <item name="android:textColor">@color/m3_on_surface</item>
     </style>
 
     <style name="TextAppearanceSmall" parent="@android:style/TextAppearance.Small">
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">#737373</item>
+        <item name="android:textColor">@color/m3_on_surface_variant</item>
     </style>
 
-    <style name="ListViewStyle" parent="@android:style/Widget.Material.Light.ListView">
+    <style name="ListViewStyle" parent="@android:style/Widget.Material.ListView">
         <item name="android:overScrollMode">always</item>
     </style>
 
@@ -461,7 +489,7 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
         <item name="android:layout_height">match_parent</item>
     </style>
 
-    <style name="BackgroundOnlyTheme" parent="@android:style/Theme.Material.Light">
+    <style name="BackgroundOnlyTheme" parent="@android:style/Theme.DeviceDefault.DayNight">
         <item name="android:windowBackground">@null</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowAnimationStyle">@null</item>
@@ -562,7 +590,7 @@ background and text color. See also android:style/Widget.Holo.TextView.ListSepar
     </style>
 
     <style name="DrawerItemTextActiveStyle">
-        <item name="android:textColor">@color/primary_color</item>
+        <item name="android:textColor">@color/m3_on_secondary_container</item>
         <item name="android:textStyle">bold</item>
     </style>
 

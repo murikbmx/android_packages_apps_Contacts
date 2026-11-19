@@ -15,5 +15,5 @@
      limitations under the License.
 -->
 <resources>
-    <color name="navigation_bar_bg">@android:color/white</color>
+    <color name="navigation_bar_bg">@color/m3_surface</color>
 </resources>

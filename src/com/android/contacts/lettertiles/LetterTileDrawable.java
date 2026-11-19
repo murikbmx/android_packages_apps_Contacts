@@ -16,6 +16,7 @@
 
 package com.android.contacts.lettertiles;
 
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -24,6 +25,8 @@ import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.AdaptiveIconDrawable;
@@ -48,6 +51,12 @@ public class LetterTileDrawable extends Drawable {
     private static TypedArray sColors;
     private static int sDefaultColor;
     private static int sTileFontColor;
+    /** Material 3 tonal palette used by circular (avatar) tiles */
+    private static TypedArray sTonalColors;
+    private static TypedArray sTonalFontColors;
+    private static int sTonalDefaultColor;
+    private static int sTonalDefaultFontColor;
+    private static int sTonalNightMode = -1;
     private static float sLetterToTileRatio;
     private static Bitmap DEFAULT_PERSON_AVATAR;
     private static Bitmap DEFAULT_BUSINESS_AVATAR;
@@ -73,6 +82,10 @@ public class LetterTileDrawable extends Drawable {
     private boolean mIsCircle = false;
 
     private int mColor;
+    /** Index into the tonal palette, or -1 to use the default tonal color */
+    private int mTonalIndex = -1;
+    /** Whether {@link #setColor} was used; an explicit color always wins over the tonal one */
+    private boolean mHasExplicitColor = false;
     private Character mLetter = null;
 
     public LetterTileDrawable(final Resources res) {
@@ -92,10 +105,54 @@ public class LetterTileDrawable extends Drawable {
             sPaint.setTextAlign(Align.CENTER);
             sPaint.setAntiAlias(true);
         }
+        loadTonalColorsIfNeeded(res);
         mPaint = new Paint();
         mPaint.setFilterBitmap(true);
         mPaint.setDither(true);
         mColor = sDefaultColor;
+    }
+
+    /**
+     * Loads the tonal (dynamic color) palette. It depends on the night mode, so it is reloaded
+     * whenever the night mode of the given resources changes.
+     */
+    private static void loadTonalColorsIfNeeded(final Resources res) {
+        final int nightMode = res.getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK;
+        if (sTonalColors != null && sTonalNightMode == nightMode) {
+            return;
+        }
+        if (sTonalColors != null) {
+            sTonalColors.recycle();
+        }
+        if (sTonalFontColors != null) {
+            sTonalFontColors.recycle();
+        }
+        sTonalColors = res.obtainTypedArray(R.array.letter_tile_tonal_colors);
+        sTonalFontColors = res.obtainTypedArray(R.array.letter_tile_tonal_font_colors);
+        sTonalDefaultColor = res.getColor(R.color.letter_tile_tonal_default_color);
+        sTonalDefaultFontColor = res.getColor(R.color.letter_tile_tonal_default_font_color);
+        sTonalNightMode = nightMode;
+    }
+
+    /** Whether this tile is drawn with the Material 3 tonal palette. */
+    private boolean useTonalColors() {
+        return mIsCircle && !mHasExplicitColor;
+    }
+
+    private int getBackgroundColor() {
+        if (!useTonalColors()) {
+            return mColor;
+        }
+        return mTonalIndex < 0 ? sTonalDefaultColor
+                : sTonalColors.getColor(mTonalIndex, sTonalDefaultColor);
+    }
+
+    private int getLetterColor() {
+        if (!useTonalColors()) {
+            return sTileFontColor;
+        }
+        return mTonalIndex < 0 ? sTonalDefaultFontColor
+                : sTonalFontColors.getColor(mTonalIndex, sTonalDefaultFontColor);
     }
 
     @Override
@@ -132,12 +189,19 @@ public class LetterTileDrawable extends Drawable {
         sPaint.setAntiAlias(true);
         sPaint.setAlpha(ALPHA);
 
+        if (useTonalColors()) {
+            // The default avatars are white; draw them in the tonal "on" color instead.
+            sPaint.setAlpha(0xFF);
+            sPaint.setColorFilter(
+                    new PorterDuffColorFilter(getLetterColor(), PorterDuff.Mode.SRC_IN));
+        }
         canvas.drawBitmap(bitmap, sRect, destRect, sPaint);
+        sPaint.setColorFilter(null);
     }
 
     private void drawLetterTile(final Canvas canvas) {
         // Draw background color.
-        sPaint.setColor(mColor);
+        sPaint.setColor(getBackgroundColor());
 
         sPaint.setAlpha(mPaint.getAlpha());
         final Rect bounds = getBounds();
@@ -159,7 +223,7 @@ public class LetterTileDrawable extends Drawable {
             sPaint.setTextSize(mScale * sLetterToTileRatio * minDimension);
             sPaint.getTextBounds(sFirstChar, 0, 1, sRect);
             sPaint.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
-            sPaint.setColor(sTileFontColor);
+            sPaint.setColor(getLetterColor());
 
             // Draw the letter in the canvas, vertically shifted up or down by the user-defined
             // offset
@@ -190,6 +254,17 @@ public class LetterTileDrawable extends Drawable {
         // The email should already have been normalized by the ContactRequest.
         final int color = Math.abs(identifier.hashCode()) % sColors.length();
         return sColors.getColor(color, sDefaultColor);
+    }
+
+    /**
+     * Returns a deterministic index into the tonal palette, or -1 for the default tonal color.
+     */
+    private int pickTonalIndex(final String identifier) {
+        if (TextUtils.isEmpty(identifier) || mContactType == TYPE_VOICEMAIL
+                || sTonalColors.length() == 0) {
+            return -1;
+        }
+        return Math.abs(identifier.hashCode()) % sTonalColors.length();
     }
 
     private static Bitmap getBitmapForContactType(int contactType) {
@@ -256,6 +331,7 @@ public class LetterTileDrawable extends Drawable {
 
     public LetterTileDrawable setColor(int color){
         mColor = color;
+        mHasExplicitColor = true;
         return this;
     }
 
@@ -268,6 +344,8 @@ public class LetterTileDrawable extends Drawable {
             mLetter = null;
         }
         mColor = pickColor(identifier);
+        mTonalIndex = pickTonalIndex(identifier);
+        mHasExplicitColor = false;
         return this;
     }
 

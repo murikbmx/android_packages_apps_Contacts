@@ -260,4 +260,33 @@
     <!-- Tonal letter tile used by circular avatars -->
     <color name="letter_tile_tonal_default_color">@color/m3_surface_container_highest</color>
     <color name="letter_tile_tonal_default_font_color">@color/m3_on_surface_variant</color>
+    <!-- Material 3 tonal letter tiles (circular avatars): container / on-container pairs -->
+    <color name="letter_tile_tonal_1">@android:color/system_accent1_100</color>
+    <color name="letter_tile_tonal_font_1">@android:color/system_accent1_800</color>
+    <color name="letter_tile_tonal_2">@android:color/system_accent2_100</color>
+    <color name="letter_tile_tonal_font_2">@android:color/system_accent2_800</color>
+    <color name="letter_tile_tonal_3">@android:color/system_accent3_100</color>
+    <color name="letter_tile_tonal_font_3">@android:color/system_accent3_800</color>
+    <color name="letter_tile_tonal_4">@android:color/system_accent1_200</color>
+    <color name="letter_tile_tonal_font_4">@android:color/system_accent1_900</color>
+    <color name="letter_tile_tonal_5">@android:color/system_accent2_200</color>
+    <color name="letter_tile_tonal_font_5">@android:color/system_accent2_900</color>
+    <color name="letter_tile_tonal_6">@android:color/system_accent3_200</color>
+    <color name="letter_tile_tonal_font_6">@android:color/system_accent3_900</color>
+    <array name="letter_tile_tonal_colors">
+        <item>@color/letter_tile_tonal_1</item>
+        <item>@color/letter_tile_tonal_2</item>
+        <item>@color/letter_tile_tonal_3</item>
+        <item>@color/letter_tile_tonal_4</item>
+        <item>@color/letter_tile_tonal_5</item>
+        <item>@color/letter_tile_tonal_6</item>
+    </array>
+    <array name="letter_tile_tonal_font_colors">
+        <item>@color/letter_tile_tonal_font_1</item>
+        <item>@color/letter_tile_tonal_font_2</item>
+        <item>@color/letter_tile_tonal_font_3</item>
+        <item>@color/letter_tile_tonal_font_4</item>
+        <item>@color/letter_tile_tonal_font_5</item>
+        <item>@color/letter_tile_tonal_font_6</item>
+    </array>
 </resources>

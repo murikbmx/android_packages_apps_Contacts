@@ -20,4 +20,18 @@
     <color name="disabled_contact_list_name_text">#61ffffff</color>
 
     <color name="control_highlight_color">#1Affffff</color>
+
+    <!-- Material 3 tonal letter tiles (circular avatars): container / on-container pairs -->
+    <color name="letter_tile_tonal_1">@android:color/system_accent1_700</color>
+    <color name="letter_tile_tonal_font_1">@android:color/system_accent1_100</color>
+    <color name="letter_tile_tonal_2">@android:color/system_accent2_700</color>
+    <color name="letter_tile_tonal_font_2">@android:color/system_accent2_100</color>
+    <color name="letter_tile_tonal_3">@android:color/system_accent3_700</color>
+    <color name="letter_tile_tonal_font_3">@android:color/system_accent3_100</color>
+    <color name="letter_tile_tonal_4">@android:color/system_accent1_800</color>
+    <color name="letter_tile_tonal_font_4">@android:color/system_accent1_200</color>
+    <color name="letter_tile_tonal_5">@android:color/system_accent2_800</color>
+    <color name="letter_tile_tonal_font_5">@android:color/system_accent2_200</color>
+    <color name="letter_tile_tonal_6">@android:color/system_accent3_800</color>
+    <color name="letter_tile_tonal_font_6">@android:color/system_accent3_200</color>
 </resources>

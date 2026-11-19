@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Material 3 "filled" text field container: tonal box with rounded top corners and an
+     active indicator line at the bottom (thicker and primary colored while focused).
+     The inset keeps a small gap between stacked fields. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:insetLeft="@dimen/m3_text_field_inset_horizontal"
+    android:insetRight="@dimen/m3_text_field_inset_horizontal"
+    android:insetTop="@dimen/m3_text_field_inset_vertical"
+    android:insetBottom="@dimen/m3_text_field_inset_vertical">
+    <selector>
+        <item android:state_focused="true">
+            <layer-list>
+                <item>
+                    <shape android:shape="rectangle">
+                        <solid android:color="@color/m3_text_field_container" />
+                        <corners
+                            android:topLeftRadius="@dimen/m3_text_field_corner_radius"
+                            android:topRightRadius="@dimen/m3_text_field_corner_radius"
+                            android:bottomLeftRadius="0dp"
+                            android:bottomRightRadius="0dp" />
+                    </shape>
+                </item>
+                <item
+                    android:gravity="bottom|fill_horizontal"
+                    android:height="@dimen/m3_text_field_indicator_focused">
+                    <shape android:shape="rectangle">
+                        <solid android:color="@color/m3_primary" />
+                    </shape>
+                </item>
+            </layer-list>
+        </item>
+        <item>
+            <layer-list>
+                <item>
+                    <shape android:shape="rectangle">
+                        <solid android:color="@color/m3_text_field_container" />
+                        <corners
+                            android:topLeftRadius="@dimen/m3_text_field_corner_radius"
+                            android:topRightRadius="@dimen/m3_text_field_corner_radius"
+                            android:bottomLeftRadius="0dp"
+                            android:bottomRightRadius="0dp" />
+                    </shape>
+                </item>
+                <item
+                    android:gravity="bottom|fill_horizontal"
+                    android:height="@dimen/m3_text_field_indicator">
+                    <shape android:shape="rectangle">
+                        <solid android:color="@color/m3_on_surface_variant" />
+                    </shape>
+                </item>
+            </layer-list>
+        </item>
+    </selector>
+</inset>

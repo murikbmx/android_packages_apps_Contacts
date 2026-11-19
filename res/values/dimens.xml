@@ -390,6 +390,15 @@
     <dimen name="extended_fab_icon_label_gap">12dp</dimen>
     <dimen name="extended_fab_label_text_size">14sp</dimen>
 
+    <!-- Material 3 filled text fields in the contact editor -->
+    <dimen name="m3_text_field_inset_horizontal">4dp</dimen>
+    <dimen name="m3_text_field_inset_vertical">4dp</dimen>
+    <dimen name="m3_text_field_corner_radius">8dp</dimen>
+    <dimen name="m3_text_field_indicator">1dp</dimen>
+    <dimen name="m3_text_field_indicator_focused">2dp</dimen>
+    <dimen name="m3_text_field_padding_horizontal">16dp</dimen>
+    <dimen name="m3_text_field_padding_vertical">14dp</dimen>
+
     <!-- Material 3 quick actions on the contact card -->
     <dimen name="quickcontact_quick_action_size">52dp</dimen>
     <dimen name="quickcontact_quick_action_vertical_padding">4dp</dimen>

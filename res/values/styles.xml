@@ -20,6 +20,21 @@
         <item name="actionBarStyle">@style/EditorActionBarStyle</item>
         <item name="colorButtonNormal">@color/background_primary</item>
         <item name="windowActionModeOverlay">true</item>
+        <!-- Material 3 filled text fields. TextFieldsEditorView creates framework EditTexts
+             (android:editTextStyle); XML EditTexts become AppCompatEditText (editTextStyle).
+             Dialogs use their own theme and keep the default fields. -->
+        <item name="android:editTextStyle">@style/ContactEditorTextFieldStyle</item>
+        <item name="editTextStyle">@style/ContactEditorTextFieldStyle</item>
+    </style>
+
+    <style name="ContactEditorTextFieldStyle" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/m3_filled_text_field</item>
+        <item name="android:paddingStart">@dimen/m3_text_field_padding_horizontal</item>
+        <item name="android:paddingEnd">@dimen/m3_text_field_padding_horizontal</item>
+        <item name="android:paddingLeft">@dimen/m3_text_field_padding_horizontal</item>
+        <item name="android:paddingRight">@dimen/m3_text_field_padding_horizontal</item>
+        <item name="android:paddingTop">@dimen/m3_text_field_padding_vertical</item>
+        <item name="android:paddingBottom">@dimen/m3_text_field_padding_vertical</item>
     </style>
 
     <style name="Theme.QuickContact" parent="@style/PeopleTheme">

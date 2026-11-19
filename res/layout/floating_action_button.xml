@@ -15,27 +15,57 @@
 -->
 
 <!-- This expects to be included inside a RelativeLayout or a CoordinatorLayout -->
-<FrameLayout
+<!-- Material 3 extended FAB: tonal rounded container with icon and label. The container is
+     the touch target; the ImageButton only shows the icon (FloatingActionButtonController
+     fades/swaps it). -->
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/floating_action_button_container"
-    android:layout_width="@dimen/floating_action_button_width"
+    android:layout_width="wrap_content"
     android:layout_height="@dimen/floating_action_button_height"
+    android:minWidth="@dimen/floating_action_button_width"
     android:layout_alignParentBottom="true"
     android:layout_alignParentEnd="true"
     android:layout_gravity="bottom|end"
     android:layout_marginBottom="@dimen/floating_action_button_margin_bottom"
     android:layout_marginEnd="@dimen/floating_action_button_margin_right"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:paddingStart="@dimen/extended_fab_padding_start"
+    android:paddingEnd="@dimen/extended_fab_padding_end"
     android:background="@drawable/fab_bg"
+    android:foreground="@drawable/floating_action_button"
+    android:clickable="true"
+    android:focusable="true"
+    android:contentDescription="@string/action_menu_add_new_contact_button"
     android:elevation="@dimen/design_fab_elevation"
     app:layout_dodgeInsetEdges="bottom" >
 
     <ImageButton
         android:id="@+id/floating_action_button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/floating_action_button"
+        android:layout_width="@dimen/extended_fab_icon_size"
+        android:layout_height="@dimen/extended_fab_icon_size"
+        android:background="@null"
+        android:clickable="false"
+        android:focusable="false"
+        android:duplicateParentState="true"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
         android:contentDescription="@string/action_menu_add_new_contact_button"
         android:src="@drawable/quantum_ic_add_vd_theme_24"
         app:tint="@color/floating_action_button_icon_color" />
-</FrameLayout>
+
+    <TextView
+        android:id="@+id/floating_action_button_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/extended_fab_icon_label_gap"
+        android:duplicateParentState="true"
+        android:importantForAccessibility="no"
+        android:singleLine="true"
+        android:text="@string/fab_create_contact"
+        android:textColor="@color/floating_action_button_icon_color"
+        android:textSize="@dimen/extended_fab_label_text_size"
+        android:fontFamily="sans-serif-medium" />
+</LinearLayout>

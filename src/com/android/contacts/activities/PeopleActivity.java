@@ -373,6 +373,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
 
         // Add shadow under toolbar.
         ViewUtil.addRectangularOutlineProvider(findViewById(R.id.toolbar_parent), getResources());
+        // Tapping the search pill starts a search, like the search menu item.
+        ViewUtil.setupToolbarTapToSearch(this, mToolbar);
 
         // Set up hamburger button.
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -543,7 +545,8 @@ public class PeopleActivity extends AppCompatContactsActivity implements
         mFloatingActionButtonContainer = findViewById(R.id.floating_action_button_container);
         final ImageButton floatingActionButton
                 = (ImageButton) findViewById(R.id.floating_action_button);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        // The whole extended FAB (icon + label) is the touch target.
+        mFloatingActionButtonContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AccountFilterUtil.startEditorIntent(PeopleActivity.this, getIntent(),
@@ -1038,10 +1041,9 @@ public class PeopleActivity extends AppCompatContactsActivity implements
                 mContactListFilterController, AppCompatActivity.RESULT_OK, intent);
     }
 
-    // Reset toolbar and status bar color to Contacts theme color.
+    // Reset status bar color to Contacts theme color. The toolbar frame keeps its
+    // Material 3 search pill background.
     private void resetToolBarStatusBarColor() {
-        findViewById(R.id.toolbar_frame).setBackgroundColor(
-                ContextCompat.getColor(this, R.color.actionbar_background_color));
         updateStatusBarBackground(ContextCompat.getColor(this, R.color.primary_color_dark));
     }
 

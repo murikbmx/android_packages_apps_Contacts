@@ -14,26 +14,34 @@
      limitations under the License.
 -->
 
+<!-- Material 3 top bar: the toolbar sits inside a rounded "search pill" drawn by the
+     toolbar_frame background. The fixed container height keeps the pill geometry stable
+     when edge-to-edge insets are added to toolbar_parent. -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolbar_parent"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:elevation="0dp"
-    android:layout_height="wrap_content" >
+    android:layout_height="@dimen/search_pill_container_height"
+    android:background="@color/actionbar_background_color"
+    android:elevation="0dp" >
 
     <FrameLayout
         android:id="@+id/toolbar_frame"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/actionbar_background_color">
+        android:layout_height="@dimen/search_pill_container_height"
+        android:background="@drawable/search_pill_toolbar_background">
 
-        <!-- the attribute padding removes the gap between this Toolbar and its parent FrameLayout on tablet -->
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/search_pill_margin_horizontal"
+            android:layout_marginEnd="@dimen/search_pill_margin_horizontal"
+            android:layout_marginTop="@dimen/search_pill_margin_vertical"
+            android:layout_marginBottom="@dimen/search_pill_margin_vertical"
             android:id="@+id/toolbar"
             android:padding="0dp"
-            style="@style/ContactsToolbarStyle" />
+            style="@style/ContactsSearchPillToolbarStyle" />
 
     </FrameLayout>
+
 </LinearLayout>

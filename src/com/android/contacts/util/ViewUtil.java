@@ -16,12 +16,17 @@
 
 package com.android.contacts.util;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Outline;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
+import android.view.Window;
 import android.widget.ListView;
+
+import androidx.appcompat.widget.Toolbar;
 
 import com.android.contacts.R;
 import com.android.contacts.compat.CompatUtils;
@@ -57,20 +62,6 @@ public class ViewUtil {
         return view.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
     }
 
-    private static final ViewOutlineProvider OVAL_OUTLINE_PROVIDER;
-    static {
-        if (CompatUtils.isLollipopCompatible()) {
-            OVAL_OUTLINE_PROVIDER = new ViewOutlineProvider() {
-                @Override
-                public void getOutline(View view, Outline outline) {
-                    outline.setOval(0, 0, view.getWidth(), view.getHeight());
-                }
-            };
-        } else {
-            OVAL_OUTLINE_PROVIDER = null;
-        }
-    }
-
     private static final ViewOutlineProvider RECT_OUTLINE_PROVIDER;
     static {
         if (CompatUtils.isLollipopCompatible()) {
@@ -98,13 +89,14 @@ public class ViewUtil {
     }
 
     /**
-     * Configures the floating action button, clipping it to a circle and setting its translation z.
+     * Configures the floating action button, clipping it to its (rounded) background shape and
+     * setting its translation z.
      * @param view The float action button's view.
      * @param res The resources file.
      */
     public static void setupFloatingActionButton(View view, Resources res) {
         if (CompatUtils.isLollipopCompatible()) {
-            view.setOutlineProvider(OVAL_OUTLINE_PROVIDER);
+            view.setOutlineProvider(ViewOutlineProvider.BACKGROUND);
             view.setTranslationZ(
                     res.getDimensionPixelSize(R.dimen.floating_action_button_translation_z));
         }
@@ -123,5 +115,21 @@ public class ViewUtil {
         listView.setPaddingRelative(listView.getPaddingStart(), listView.getPaddingTop(),
                 listView.getPaddingEnd(), listView.getPaddingBottom() + fabPadding);
         listView.setClipToPadding(false);
+    }
+
+    /**
+     * Makes taps on the free area of the toolbar (the Material 3 search pill) behave like the
+     * search menu item, as long as that item is currently shown.
+     */
+    public static void setupToolbarTapToSearch(final Activity activity, final Toolbar toolbar) {
+        toolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final MenuItem searchItem = toolbar.getMenu().findItem(R.id.menu_search);
+                if (searchItem != null && searchItem.isVisible() && searchItem.isEnabled()) {
+                    activity.onMenuItemSelected(Window.FEATURE_OPTIONS_PANEL, searchItem);
+                }
+            }
+        });
     }
 }

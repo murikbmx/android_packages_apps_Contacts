@@ -75,4 +75,7 @@
         <item quantity="many">Пропущено %d дубликатов</item>
         <item quantity="other">Пропущено %d дубликата</item>
     </plurals>
+
+    <!-- Label of the extended floating action button on the main contact list -->
+    <string name="fab_create_contact">Создать контакт</string>
 </resources>

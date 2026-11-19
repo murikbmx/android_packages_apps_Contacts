@@ -3,7 +3,9 @@
   SPDX-FileCopyrightText: The LineageOS Project
   SPDX-License-Identifier: Apache-2.0
 -->
+<!-- Material 3 extended FAB container -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="oval">
+    android:shape="rectangle">
     <solid android:color="@color/fab_color"/>
+    <corners android:radius="@dimen/extended_fab_corner_radius"/>
 </shape>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Surface colored bar with a Material 3 search pill on top of it -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/actionbar_background_color" />
+    <item
+        android:left="@dimen/search_pill_margin_horizontal"
+        android:right="@dimen/search_pill_margin_horizontal"
+        android:top="@dimen/search_pill_margin_vertical"
+        android:bottom="@dimen/search_pill_margin_vertical">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/search_pill_color" />
+            <corners android:radius="@dimen/search_pill_corner_radius" />
+        </shape>
+    </item>
+</layer-list>

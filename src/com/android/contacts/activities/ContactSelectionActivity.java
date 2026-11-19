@@ -151,12 +151,16 @@ public class ContactSelectionActivity extends AppCompatContactsActivity
 
     private void prepareSearchViewAndActionBar(Bundle savedState) {
         mToolbar = getView(R.id.toolbar);
+        // The top inset goes to toolbar_parent so the search pill drawn by toolbar_frame
+        // stays below the status bar.
         MoreContactUtils.setupEdgeToEdge(
-                this, new EdgeToEdgeInsetHandler(findViewById(R.id.toolbar_frame)));
+                this, new EdgeToEdgeInsetHandler(findViewById(R.id.toolbar_parent)));
         setSupportActionBar(mToolbar);
 
         // Add a shadow under the toolbar.
         ViewUtil.addRectangularOutlineProvider(findViewById(R.id.toolbar_parent), getResources());
+        // Tapping the search pill starts a search, like the search menu item.
+        ViewUtil.setupToolbarTapToSearch(this, mToolbar);
 
         mActionBarAdapter =
                 new ActionBarAdapter(

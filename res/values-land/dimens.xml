@@ -20,6 +20,9 @@
 
     <dimen name="editor_type_label_width">120dip</dimen>
 
+    <!-- Material 3 search pill: shorter on landscape phones -->
+    <dimen name="search_pill_container_height">64dp</dimen>
+
     <!-- Top padding for the image for empty group view-->
     <dimen name="empty_group_view_image_padding_top">0dp</dimen>
 

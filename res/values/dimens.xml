@@ -184,9 +184,9 @@
     <dimen name="expanding_entry_card_item_icon_height">24dp</dimen>
     <dimen name="expanding_entry_card_item_icon_width">24dp</dimen>
 
-    <dimen name="contact_browser_list_item_padding_top_or_bottom">7dp</dimen>
+    <dimen name="contact_browser_list_item_padding_top_or_bottom">10dp</dimen>
 
-    <dimen name="contact_browser_list_item_height">56dp</dimen>
+    <dimen name="contact_browser_list_item_height">64dp</dimen>
 
     <!-- Default activity margins, per the Android Material Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
@@ -303,7 +303,7 @@
 
     <!-- contact browser list margins -->
     <dimen name="contact_browser_list_item_text_size">16sp</dimen>
-    <dimen name="contact_browser_list_item_photo_size">40dp</dimen>
+    <dimen name="contact_browser_list_item_photo_size">44dp</dimen>
     <dimen name="contact_browser_list_item_gap_between_image_and_text">15dp</dimen>
     <dimen name="contact_browser_list_item_gap_between_indexer_and_image">16dp</dimen>
 
@@ -374,6 +374,21 @@
     <!-- Material 3 drawer item pill -->
     <dimen name="drawer_item_pill_inset">12dp</dimen>
     <dimen name="drawer_item_pill_radius">28dp</dimen>
+
+    <!-- Material 3 search pill in the main toolbar -->
+    <dimen name="search_pill_container_height">72dp</dimen>
+    <dimen name="search_pill_margin_horizontal">16dp</dimen>
+    <dimen name="search_pill_margin_vertical">8dp</dimen>
+    <dimen name="search_pill_corner_radius">100dp</dimen>
+    <dimen name="search_pill_title_text_size">18sp</dimen>
+
+    <!-- Material 3 extended FAB -->
+    <dimen name="extended_fab_corner_radius">16dp</dimen>
+    <dimen name="extended_fab_padding_start">16dp</dimen>
+    <dimen name="extended_fab_padding_end">20dp</dimen>
+    <dimen name="extended_fab_icon_size">24dp</dimen>
+    <dimen name="extended_fab_icon_label_gap">12dp</dimen>
+    <dimen name="extended_fab_label_text_size">14sp</dimen>
     <!-- Side padding within the navigation drawer -->
     <dimen name="drawer_side_padding">24dp</dimen>
     <!-- Size of the icon in navigation drawer -->

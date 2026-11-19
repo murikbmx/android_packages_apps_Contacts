@@ -255,6 +255,8 @@
     <!-- Call subject dialog keeps its light-only look -->
     <color name="call_subject_text_color">#333333</color>
     <color name="call_subject_secondary_text_color">#737373</color>
+    <!-- Material 3 search pill on the main list -->
+    <color name="search_pill_color">@color/m3_surface_container_high</color>
     <!-- Tonal letter tile used by circular avatars -->
     <color name="letter_tile_tonal_default_color">@color/m3_surface_container_highest</color>
     <color name="letter_tile_tonal_default_font_color">@color/m3_on_surface_variant</color>

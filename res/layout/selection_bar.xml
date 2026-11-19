@@ -18,7 +18,11 @@
     android:id="@+id/selection_bar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/contextual_selection_bar_color">
+    android:layout_marginStart="@dimen/search_pill_margin_horizontal"
+    android:layout_marginEnd="@dimen/search_pill_margin_horizontal"
+    android:layout_marginTop="@dimen/search_pill_margin_vertical"
+    android:layout_marginBottom="@dimen/search_pill_margin_vertical"
+    android:background="@android:color/transparent">
 
     <ImageButton
         android:id="@+id/selection_close"

@@ -72,4 +72,7 @@
         <item quantity="one">Skipped %d duplicate contact</item>
         <item quantity="other">Skipped %d duplicate contacts</item>
     </plurals>
+
+    <!-- Label of the extended floating action button on the main contact list -->
+    <string name="fab_create_contact">Create contact</string>
 </resources>

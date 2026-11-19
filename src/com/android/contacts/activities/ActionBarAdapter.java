@@ -371,8 +371,8 @@ public class ActionBarAdapter implements OnCloseListener {
                 = (mSearchContainer.getParent() == null) == mSearchMode;
         final boolean isTabHeightChanging = isSearchModeChanging || isSelectionModeChanging;
 
-        // Update toolbar and status bar color.
-        mToolBarFrame.setBackgroundColor(MaterialColorMapUtils.getToolBarColor(mActivity));
+        // Update status bar color. The toolbar frame keeps its Material 3 search pill
+        // background, so it is not recolored here.
         updateStatusBarColor(isSelectionModeChanging && !isSearchModeChanging);
 
         // When skipAnimation=true, it is possible that we will switch from search mode

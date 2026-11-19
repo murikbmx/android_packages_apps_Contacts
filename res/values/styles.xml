@@ -246,6 +246,18 @@
         <item name="titleTextAppearance">@style/ContactsActionBarTitleTextAppCompat</item>
     </style>
 
+    <!-- Toolbar placed inside the Material 3 search pill on the main list -->
+    <style name="ContactsSearchPillToolbarStyle" parent="@style/ContactsToolbarStyle">
+        <item name="android:titleTextAppearance">@style/ContactsSearchPillTitleText</item>
+        <item name="titleTextAppearance">@style/ContactsSearchPillTitleText</item>
+        <item name="contentInsetStartWithNavigation">56dp</item>
+    </style>
+
+    <style name="ContactsSearchPillTitleText" parent="@style/ContactsActionBarTitleTextAppCompat">
+        <item name="android:textSize">@dimen/search_pill_title_text_size</item>
+        <item name="android:textColor">@color/m3_on_surface_variant</item>
+    </style>
+
     <style name="LightToolbarNavigationButtonStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
         <item name="android:tint">?android:textColorSecondary</item>
     </style>

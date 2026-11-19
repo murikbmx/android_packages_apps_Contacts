@@ -30,6 +30,8 @@
         android:paddingTop="@dimen/first_card_marginTop"
         android:id="@+id/card_container" >
 
+        <include layout="@layout/quickcontact_quick_actions" />
+
         <com.android.contacts.quickcontact.ExpandingEntryCardView
             style="@style/ExpandingEntryCardStyle"
             android:id="@+id/no_contact_data_card"

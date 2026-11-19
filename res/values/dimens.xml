@@ -389,6 +389,12 @@
     <dimen name="extended_fab_icon_size">24dp</dimen>
     <dimen name="extended_fab_icon_label_gap">12dp</dimen>
     <dimen name="extended_fab_label_text_size">14sp</dimen>
+
+    <!-- Material 3 quick actions on the contact card -->
+    <dimen name="quickcontact_quick_action_size">52dp</dimen>
+    <dimen name="quickcontact_quick_action_vertical_padding">4dp</dimen>
+    <dimen name="quickcontact_quick_action_label_margin">8dp</dimen>
+    <dimen name="quickcontact_quick_action_label_text_size">12sp</dimen>
     <!-- Side padding within the navigation drawer -->
     <dimen name="drawer_side_padding">24dp</dimen>
     <!-- Size of the icon in navigation drawer -->

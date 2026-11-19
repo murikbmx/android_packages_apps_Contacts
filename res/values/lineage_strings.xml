@@ -75,4 +75,10 @@
 
     <!-- Label of the extended floating action button on the main contact list -->
     <string name="fab_create_contact">Create contact</string>
+
+    <!-- Labels of the round quick action buttons on the contact card -->
+    <string name="quick_action_call">Call</string>
+    <string name="quick_action_message">Message</string>
+    <string name="quick_action_video">Video</string>
+    <string name="quick_action_email">Email</string>
 </resources>

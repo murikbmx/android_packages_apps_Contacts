@@ -334,6 +334,7 @@
         <item name="android:background">@color/expanding_entry_card_background_color</item>
         <item name="cardBackgroundColor">@color/expanding_entry_card_background_color</item>
         <item name="cardElevation">0dp</item>
+        <item name="cardCornerRadius">@dimen/expanding_entry_card_card_corner_radius</item>
         <item name="android:layout_marginBottom">@dimen/expanding_entry_card_marginBottom</item>
         <item name="android:layout_marginEnd">@dimen/expanding_entry_card_marginStartEnd</item>
         <item name="android:layout_marginStart">@dimen/expanding_entry_card_marginStartEnd</item>

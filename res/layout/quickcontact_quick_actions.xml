@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Material 3 row of round tonal quick action buttons shown above the contact card's
+     sections. Every action is hidden until QuickContactActivity binds an intent to it. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/quick_actions_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/expanding_entry_card_marginStartEnd"
+    android:layout_marginEnd="@dimen/expanding_entry_card_marginStartEnd"
+    android:layout_marginBottom="@dimen/expanding_entry_card_marginBottom"
+    android:orientation="horizontal"
+    android:gravity="center_horizontal"
+    android:baselineAligned="false"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:id="@+id/quick_action_call"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/quickcontact_quick_action_vertical_padding"
+        android:paddingBottom="@dimen/quickcontact_quick_action_vertical_padding"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/quick_action_call"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/quickcontact_quick_action_size"
+            android:layout_height="@dimen/quickcontact_quick_action_size"
+            android:background="@drawable/quickcontact_quick_action_background"
+            android:scaleType="center"
+            android:src="@drawable/quantum_ic_phone_vd_theme_24"
+            android:tint="@color/m3_on_secondary_container"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quickcontact_quick_action_label_margin"
+            android:text="@string/quick_action_call"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="@dimen/quickcontact_quick_action_label_text_size"
+            android:fontFamily="sans-serif-medium"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:importantForAccessibility="no" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/quick_action_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/quickcontact_quick_action_vertical_padding"
+        android:paddingBottom="@dimen/quickcontact_quick_action_vertical_padding"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/quick_action_message"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/quickcontact_quick_action_size"
+            android:layout_height="@dimen/quickcontact_quick_action_size"
+            android:background="@drawable/quickcontact_quick_action_background"
+            android:scaleType="center"
+            android:src="@drawable/quantum_ic_message_vd_theme_24"
+            android:tint="@color/m3_on_secondary_container"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quickcontact_quick_action_label_margin"
+            android:text="@string/quick_action_message"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="@dimen/quickcontact_quick_action_label_text_size"
+            android:fontFamily="sans-serif-medium"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:importantForAccessibility="no" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/quick_action_video"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/quickcontact_quick_action_vertical_padding"
+        android:paddingBottom="@dimen/quickcontact_quick_action_vertical_padding"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/quick_action_video"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/quickcontact_quick_action_size"
+            android:layout_height="@dimen/quickcontact_quick_action_size"
+            android:background="@drawable/quickcontact_quick_action_background"
+            android:scaleType="center"
+            android:src="@drawable/quantum_ic_videocam_vd_theme_24"
+            android:tint="@color/m3_on_secondary_container"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quickcontact_quick_action_label_margin"
+            android:text="@string/quick_action_video"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="@dimen/quickcontact_quick_action_label_text_size"
+            android:fontFamily="sans-serif-medium"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:importantForAccessibility="no" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/quick_action_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:paddingTop="@dimen/quickcontact_quick_action_vertical_padding"
+        android:paddingBottom="@dimen/quickcontact_quick_action_vertical_padding"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="@string/quick_action_email"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="@dimen/quickcontact_quick_action_size"
+            android:layout_height="@dimen/quickcontact_quick_action_size"
+            android:background="@drawable/quickcontact_quick_action_background"
+            android:scaleType="center"
+            android:src="@drawable/quantum_ic_email_vd_theme_24"
+            android:tint="@color/m3_on_secondary_container"
+            android:importantForAccessibility="no" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/quickcontact_quick_action_label_margin"
+            android:text="@string/quick_action_email"
+            android:textColor="@color/m3_on_surface"
+            android:textSize="@dimen/quickcontact_quick_action_label_text_size"
+            android:fontFamily="sans-serif-medium"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:importantForAccessibility="no" />
+    </LinearLayout>
+
+</LinearLayout>

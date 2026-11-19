@@ -78,4 +78,10 @@
 
     <!-- Label of the extended floating action button on the main contact list -->
     <string name="fab_create_contact">Создать контакт</string>
+
+    <!-- Labels of the round quick action buttons on the contact card -->
+    <string name="quick_action_call">Позвонить</string>
+    <string name="quick_action_message">Сообщение</string>
+    <string name="quick_action_video">Видео</string>
+    <string name="quick_action_email">Почта</string>
 </resources>

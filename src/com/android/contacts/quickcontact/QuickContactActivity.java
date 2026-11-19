@@ -291,6 +291,8 @@ public class QuickContactActivity extends ContactsActivity {
     private QuickContactImageView mPhotoView;
     private ExpandingEntryCardView mContactCard;
     private ExpandingEntryCardView mNoContactDetailsCard;
+    /** Material 3 row of round quick action buttons (call, message, video, email). */
+    private View mQuickActionsContainer;
     private ExpandingEntryCardView mAboutCard;
 
     private long mPreviousContactId = 0;
@@ -744,6 +746,7 @@ public class QuickContactActivity extends ContactsActivity {
         mContactCard = (ExpandingEntryCardView) findViewById(R.id.communication_card);
         mNoContactDetailsCard = (ExpandingEntryCardView) findViewById(R.id.no_contact_data_card);
         mAboutCard = (ExpandingEntryCardView) findViewById(R.id.about_card);
+        mQuickActionsContainer = findViewById(R.id.quick_actions_container);
 
         mNoContactDetailsCard.setOnClickListener(mEntryClickHandler);
         mContactCard.setOnClickListener(mEntryClickHandler);
@@ -1151,6 +1154,7 @@ public class QuickContactActivity extends ContactsActivity {
         if (mHasIntentLaunched || cp2DataCardModel == null) {
             return;
         }
+        bindQuickActions(cp2DataCardModel.dataItemsMap);
         Trace.beginSection("bind contact card");
 
         final List<List<Entry>> contactCardEntries = cp2DataCardModel.contactCardEntries;
@@ -1261,6 +1265,93 @@ public class QuickContactActivity extends ContactsActivity {
             mAboutCard.setVisibility(View.VISIBLE);
         }
         Trace.endSection();
+    }
+
+    /**
+     * Binds the Material 3 quick action buttons to the preferred phone number and email address
+     * of the contact. Buttons without a matching intent are hidden, as is the whole row when no
+     * action is available. Clicks go through {@link #mEntryClickHandler}, like card entries.
+     */
+    private void bindQuickActions(Map<String, List<DataItem>> dataItemsMap) {
+        if (mQuickActionsContainer == null) {
+            return;
+        }
+        String number = null;
+        final DataItem phoneItem = getPreferredDataItem(dataItemsMap.get(Phone.CONTENT_ITEM_TYPE));
+        if (phoneItem instanceof PhoneDataItem) {
+            number = ((PhoneDataItem) phoneItem).getNumber();
+        }
+        String email = null;
+        final DataItem emailItem = getPreferredDataItem(dataItemsMap.get(Email.CONTENT_ITEM_TYPE));
+        if (emailItem instanceof EmailDataItem) {
+            email = ((EmailDataItem) emailItem).getAddress();
+        }
+
+        final boolean hasNumber = !TextUtils.isEmpty(number);
+        final boolean isPhone = PhoneCapabilityTester.isPhone(this);
+
+        Intent callIntent = null;
+        Intent smsIntent = null;
+        Intent videoIntent = null;
+        Intent emailIntent = null;
+        if (hasNumber) {
+            if (isPhone) {
+                callIntent = CallUtil.getCallIntent(number);
+                callIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.CALL);
+                final int videoCapability = CallUtil.getVideoCallingAvailability(this);
+                if ((videoCapability & CallUtil.VIDEO_CALLING_ENABLED) != 0) {
+                    videoIntent = CallUtil.getVideoCallIntent(
+                            number, CALL_ORIGIN_QUICK_CONTACTS_ACTIVITY);
+                    videoIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.VIDEOCALL);
+                }
+            }
+            smsIntent = new Intent(Intent.ACTION_SENDTO,
+                    Uri.fromParts(ContactsUtils.SCHEME_SMSTO, number, null));
+            smsIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.SMS);
+        }
+        if (!TextUtils.isEmpty(email)) {
+            emailIntent = new Intent(Intent.ACTION_SENDTO,
+                    Uri.fromParts(ContactsUtils.SCHEME_MAILTO, email, null));
+            emailIntent.putExtra(EXTRA_ACTION_TYPE, ActionType.EMAIL);
+        }
+
+        boolean hasAnyAction = false;
+        hasAnyAction |= bindQuickAction(R.id.quick_action_call, callIntent);
+        hasAnyAction |= bindQuickAction(R.id.quick_action_message, smsIntent);
+        hasAnyAction |= bindQuickAction(R.id.quick_action_video, videoIntent);
+        hasAnyAction |= bindQuickAction(R.id.quick_action_email, emailIntent);
+        mQuickActionsContainer.setVisibility(hasAnyAction ? View.VISIBLE : View.GONE);
+    }
+
+    /** Shows the quick action {@code viewId} for {@code intent}, or hides it if it is null. */
+    private boolean bindQuickAction(int viewId, Intent intent) {
+        final View view = mQuickActionsContainer.findViewById(viewId);
+        if (view == null) {
+            return false;
+        }
+        if (intent == null) {
+            view.setVisibility(View.GONE);
+            view.setOnClickListener(null);
+            view.setTag(null);
+            return false;
+        }
+        view.setTag(new EntryTag(/* id= */ -1, intent));
+        view.setOnClickListener(mEntryClickHandler);
+        view.setVisibility(View.VISIBLE);
+        return true;
+    }
+
+    /** Returns the super primary item of the list, or its first item. */
+    private static DataItem getPreferredDataItem(List<DataItem> items) {
+        if (items == null || items.isEmpty()) {
+            return null;
+        }
+        for (DataItem item : items) {
+            if (item.isSuperPrimary()) {
+                return item;
+            }
+        }
+        return items.get(0);
     }
 
     /**
